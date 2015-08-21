@@ -8,12 +8,11 @@
     <div id="example"></div>
     <script type="text/babel">
       var names = ['Alice', 'Emily', 'Kate'];
-
       React.render(
         <div>
         {
           names.map(function (name) {
-            return <div>Hello, {name}!</div>
+            return <h3><div>Hello, {name}!</div></h3>
           })
         }
         </div>,

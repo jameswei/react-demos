@@ -7,24 +7,42 @@
   <body>
     <div id="example"></div>
     <script type="text/babel">
-var MyComponent = React.createClass({
+var LikeButton = React.createClass({
+  getInitialState: function() {
+    return {liked: null};
+  },
   handleClick: function() {
-    React.findDOMNode(this.refs.myTextInput).focus();
+    this.setState({liked: this.state.liked==null?true:!this.state.liked});
   },
   render: function() {
+  var stat,text,button;
+    if(this.state.liked == null){
+        stat='?';
+        text='like';
+        button='like';
+    }else if(this.state.liked){
+        stat='!';
+        text='like';
+        button='unlike';
+    }else{
+        stat='!';
+        text='unlike';
+        button='like';
+    }
     return (
-      <div>
-        <input type="text" ref="myTextInput" />
-        <input type="button" value="Focus the text input" onClick={this.handleClick} />
-      </div>
+    <div>
+    <p>You {text} this{stat}</p>
+    <input type="button" value={button} onClick={this.handleClick} />
+    </div>  
     );
   }
 });
 
 React.render(
-  <MyComponent />,
+  <LikeButton />,
   document.getElementById('example')
 );
     </script>
   </body>
 </html>
+
